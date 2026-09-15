@@ -1,0 +1,29 @@
+body {
+    background-color: #ffe6e6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #4a2c2a;
+    margin: 40px;
+}
+
+h1 { color: #d15b7c; }
+
+.card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-right: 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-edit { background-color: #ffb3ba; color: #4a2c2a; }
+.btn-delete { background-color: #ff6b6b; color: white; }
+.btn-back { background-color: #baffc9; color: #4a2c2a; }

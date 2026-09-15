@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Apagar Bolo</title>
+    <link rel="stylesheet" href="{% static 'catalogo/style.css' %}">
+</head>
+<body>
+    <h1>Tem certeza que deseja apagar?</h1>
+    <div class="card">
+        <p>Você está prestes a remover o bolo <strong>{{ bolo.nome }}</strong> definitivamente da confeitaria.</p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-delete">Sim, Apagar</button>
+            <a href="{% url 'catalogo:detalhe_bolo' bolo.pk %}" class="btn btn-back">Cancelar</a>
+        </form>
+    </div>
+</body>
+</head>

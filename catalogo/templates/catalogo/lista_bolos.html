@@ -1,21 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Lista de Bolos</title>
+    <link rel="stylesheet" href="{% static 'catalogo/style.css' %}">
 </head>
 <body>
     <h1>Nossos deliciosos Bolos</h1>
-    <a href="{% url 'catalogo:home' %}">Voltar</a>
+    <a href="{% url 'catalogo:home' %}" clas s="btn btn-back">Voltar</a>
 
-    {% if bolos%}
+    {% if bolos %}
         <ul>
-            {% for bolo in bolos %}
-                <li>{{bolo.nome}} - R$ {{bolo.preco}}</li>
-            {% endfor %}
+        {% for bolo in bolos %}
+            <li>
+                <a href="{% url 'catalogo:detalhe_bolo' bolo.pk %}">{{ bolo.nome }}</a> - R$ {{ bolo.preco }}
+            </li>
+        {% endfor %}
         </ul>
-    {% else %}
-        <p>Nenhum bolo cadastrado.</p>
     {% endif %}
 </body>
 </html>

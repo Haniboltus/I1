@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Bolo</title>
+    <link rel="stylesheet" href="{% static 'catalogo/style.css' %}">
+</head>
+<body>
+    <h1>{{ bolo.nome }}</h1>
+    <div class="card">
+        <p><strong>Sabor:</strong> {{ bolo.sabor }}</p>
+        <p><strong>Preço:</strong> R$ {{ bolo.preco }}</p>
+        <p><strong>Ingredientes:</strong> {{ bolo.ingredientes }}</p>
+        <p><strong>Disponível no Estoque:</strong> {% if bolo.disponivel %}Sim{% else %}Não{% endif %}</p>
+    </div>
+    
+    <a href="{% url 'catalogo:editar_bolo' bolo.pk %}" class="btn btn-edit">Editar Estoque</a>
+    <a href="{% url 'catalogo:apagar_bolo' bolo.pk %}" class="btn btn-delete">Apagar do Catálogo</a>
+    <br><br>
+    <a href="{% url 'catalogo:lista_bolos' %}" class="btn btn-back">⬅ Voltar para a Lista</a>
+</body>
+</html>

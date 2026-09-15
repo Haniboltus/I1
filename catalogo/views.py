@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Bolo
 from .forms import BoloForm
+from django.shortcuts import render, redirect, get_object_or_404
+
 
 def pagina_inicial(request):
     return render(request, 'catalogo/index.html')
@@ -27,3 +29,26 @@ def novo_bolo(request):
     return render(request,
                    'catalogo/bolo_form.html',
                    {'form' : form})
+
+def detalhe_bolo(request, pk):
+    bolo = get_object_or_404(Bolo, pk=pk)
+    return render(request, 'catalogo/detalhes_bolo.html', {'bolo': bolo})
+
+def editar_bolo(request, pk):
+    bolo = get_object_or_404(Bolo, pk=pk)
+    if request.method == "POST":
+        form = BoloForm(request.POST, instance=bolo)
+        if form.is_valid():
+            form.save()
+            return redirect('catalogo:detalhe_bolo', pk=bolo.pk)
+    else:
+        form = BoloForm(instance=bolo)
+    return render(request, 'catalogo/bolo_form.html', {'form': form, 'bolo': bolo})
+
+def apagar_bolo(request, pk):
+    bolo = get_object_or_404(Bolo, pk=pk)
+    if request.method == "POST":
+        bolo.delete()
+        return redirect('catalogo:lista_bolos')
+    return render(request, 'catalogo/deletar_bolo.html', {'bolo': bolo})
+
