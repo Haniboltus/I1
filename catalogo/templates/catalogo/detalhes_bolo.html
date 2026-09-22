@@ -8,16 +8,26 @@
 </head>
 <body>
     <h1>{{ bolo.nome }}</h1>
+
     <div class="card">
+        <!-- BLOCO DA IMAGEM ADICIONADO AQUI -->
+        {% if bolo.imagem %}
+            <div style="margin-bottom: 15px;">
+                <img src="{{ bolo.imagem.url }}" alt="Foto do {{ bolo.nome }}" style="max-width: 100%; height: auto; border-radius: 8px;">
+            </div>
+        {% else %}
+            <p style="color: #666; font-style: italic;">Sem foto cadastrada</p>
+        {% endif %}
+
         <p><strong>Sabor:</strong> {{ bolo.sabor }}</p>
         <p><strong>Preço:</strong> R$ {{ bolo.preco }}</p>
         <p><strong>Ingredientes:</strong> {{ bolo.ingredientes }}</p>
         <p><strong>Disponível no Estoque:</strong> {% if bolo.disponivel %}Sim{% else %}Não{% endif %}</p>
     </div>
-    
+
     <a href="{% url 'catalogo:editar_bolo' bolo.pk %}" class="btn btn-edit">Editar Estoque</a>
     <a href="{% url 'catalogo:apagar_bolo' bolo.pk %}" class="btn btn-delete">Apagar do Catálogo</a>
     <br><br>
-    <a href="{% url 'catalogo:lista_bolos' %}" class="btn btn-back">⬅ Voltar para a Lista</a>
+    <a href="{% url 'catalogo:lista_bolos' %}" class="btn btn-back">Voltar para a Lista</a>
 </body>
 </html>

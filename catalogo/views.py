@@ -52,3 +52,4 @@ def apagar_bolo(request, pk):
         return redirect('catalogo:lista_bolos')
     return render(request, 'catalogo/deletar_bolo.html', {'bolo': bolo})
 
+
